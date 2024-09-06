@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('homePage');
 });
+
+
+Route::get('/test', function() {
+    $sql = "select * from Item";
+    $items = DB::select($sql);
+    // dd($items);
+    return view('homePage')->with('items', $items);
+});
+
+Route::get('item_detail/{id}', function($id) {
+    $item = get_item($id);
+    return view('reviewPage')->with('item', $item);
+});
+
+function get_item($id) {
+    $sql = "select * from item where Item_id = ? ";
+    $items = DB::select($sql, array($id));
+    if(count($items) !== 1)  {
+        die("Something has gone wrong, invalid query or result: $sql");
+    }
+    $item = $items[0];
+    return $item;
+}

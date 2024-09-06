@@ -10,8 +10,7 @@
         <div class="content-container">
             <!-- ADD ITEM SECTION -->
             <div class="add-item-container">
-                <button type="button" class="my-button" data-bs-toggle="modal" data-bs-target="#addItemModal">Add
-                    item</button>
+                <button type="button" class="my-button" data-bs-toggle="modal" data-bs-target="#addItemModal">Add item</button>
 
                 <!-- ADD ITEM MODAL -->
                 <div class="modal fade" id="addItemModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -53,6 +52,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- CARD FILTER -->
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -66,98 +66,32 @@
 
             <!-- CARD CONTAINER -->
             <div class="card-container">
-                <a href="reviewPage.blade.php">
-                    <div class="card">
-                        <img src="images/sunglasses.jpg" class="card-img" alt="sunglasses image">
-                        <div class="card-body">
-                            <h5 class="card-title">Name</h5>
-                            <h6>Manufacturer</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk
-                                of
-                                the card's content.</p>
-                        </div>
-                        <div class="rating">
-                            <div class="stars">
-                                <span>4.5</span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
+                @forelse ($items as $item)
+                    <a href="item_detail/{{ $item->Item_id }}">
+                        <div class="card">
+                            <img src="images/{{$item->Image}}" class="card-img" alt="sunglasses image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $item->Name }}</h5>
+                                <h6>{{ $item->Manufacturer}}</h6>
+                                <p class="card-text">{{ $item->Description }}</p>
                             </div>
-                            <div class="review-total">
-                                <p>(12)</p>
+                            <div class="rating">
+                                <div class="stars">
+                                    <span>4.5</span>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="review-total">
+                                    <p>(12)</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                <div class="card">
-                    <img src="images/sunglasses.jpg" class="card-img" alt="sunglasses image">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                    </div>
-                    <div class="rating">
-                        <div class="stars">
-                            <span>4.5</span>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review-total">
-                            <p>(12)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/sunglasses.jpg" class="card-img" alt="sunglasses image">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                    </div>
-                    <div class="rating">
-                        <div class="stars">
-                            <span>4.5</span>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review-total">
-                            <p>(12)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/sunglasses.jpg" class="card-img" alt="sunglasses image">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                    </div>
-                    <div class="rating">
-                        <div class="stars">
-                            <span>4.5</span>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review-total">
-                            <p>(12)</p>
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                @empty
+                @endforelse
             </div>
         </div>
     </main>

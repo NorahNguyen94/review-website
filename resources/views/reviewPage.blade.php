@@ -10,7 +10,7 @@
         <div class="review-container">
             <div class="product-info row">
                 <div class="img-container col-5">
-                    <img src="sunglasses.jpg" alt="">
+                    <img src="images/sunglasses.jpg" alt="">
                 </div>
                 <div class="info-details col-7">
                     <div class="rate">
@@ -26,9 +26,9 @@
                             <p><span>12</span> Reviews</p>
                         </div>
                     </div>
-                    <h4>name</h4>
-                    <h5>Manufacturer</h5>
-                    <p>Description</p>
+                    <h4>{{ $item->Name }}</h4>
+                    <h5>{{ $item->Manufacturer }}</h5>
+                    <p>{{ $item->Description }}</p>
                 </div>
             </div>
             <div class="review-content">
@@ -87,7 +87,7 @@
                 <div class="all-reviews">
                     <div class="review-item row">
                         <div class="avatar col-2">
-                            <img src="avatar.png" alt="">
+                            <img src="images/avatar.png" alt="">
                         </div>
                         <div class="col-9">
                             <div>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="review-item row">
                         <div class="avatar col-2">
-                            <img src="avatar.png" alt="">
+                            <img src="images/avatar.png" alt="">
                         </div>
                         <div class="col-9">
                             <div>

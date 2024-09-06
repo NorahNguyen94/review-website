@@ -176,9 +176,14 @@ main {
     color: white;
     border: none;
     border-radius: 5px;
+    position: relative;
+    z-index: 1;
 }
 
-.form-group btn
+.form-group #imageUpload {
+    position: absolute;
+    left: 50px;
+}
 
 .form-group label { margin-bottom: 7px;}
 
