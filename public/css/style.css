@@ -1,0 +1,212 @@
+:root {
+    --star-color: rgb(216, 216, 13);
+    --background-color: #f0f0f0;
+}
+
+* {
+    /* margin: 0;
+    padding: 0; */
+    box-sizing: border-box;
+}
+
+/* --------- NAV BAR ---------- */
+#search-form {
+    border-radius: 1px;
+    min-width: 400px;
+}
+
+#search-btn {
+    border-radius: 1px;
+    min-width: 70px;
+}
+
+.user { max-width: 40px; }
+
+#user-icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+/* ------ CONTENT CONTAINER -------- */
+.content-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+main {
+    background-color: var(--background-color);
+    padding-top: 40px;
+}
+
+/* ------- FILTER -------- */
+.dropdown .btn {
+    border: 1px solid #5c5959;
+    width: 200px;
+    letter-spacing: 1px;
+    text-align: end;
+}
+
+.dropdown .btn i {
+    margin-left: 0;
+}
+
+.dropdown {
+    text-align: right;
+    margin-right: 80px;
+}
+
+#filter-icon { padding-right: 90px; }
+
+/* ------ CARD ------- */
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.card {
+    width: 280px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+    margin: 20px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+/* ----------- RATING ------------- */
+.rating {
+    margin-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    text-wrap: wrap;
+}
+
+.stars i { color: var(--star-color) }
+
+.review-total { margin-right: 10px;}
+
+
+/* ------------ REVIEW PAGE -------------- */
+.review-container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.product-info, .review-content { background-color: white;}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    min-width: 150px;
+}
+
+.rate {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.rate .stars {
+    height: 30px;
+    border-right: 1px solid #5c5959;
+    padding-right: 15px;
+}
+
+.review-number { padding-left: 15px; }
+
+.rate span { border-bottom: 1px solid grey;}
+
+.review-content { margin-top: 50px; }
+
+.review-content h5 { 
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.review-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-heading .my-button {
+    height: 80%;
+    background-color: #0c68a5;
+    color: white;
+    border: none; 
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.all-reviews {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.review-item {
+    padding: 10px 10px 20px 10px;
+    margin-top: 10px;
+}
+
+.review-item:not(:last-child) { border-bottom: 1px solid grey;}
+ 
+.avatar img {
+    width: 40%;
+    min-width: 40px;
+    border-radius: 50px;
+    margin-left: 40%;
+}
+
+/* ----- THE FORM FOR MODAL ------ */
+.form-group { padding: 10px; }
+
+.form-group .btn {
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.form-group btn
+
+.form-group label { margin-bottom: 7px;}
+
+.form-group:nth-child(2) { align-items: center;}
+
+/* FROM HERE */
+.star-rating {
+    display: flex;
+    direction: row-reverse;
+    font-size: 2rem;
+    justify-content: left;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.star-rating input:checked ~ label {
+    color: gold;
+}
+
+.star-rating input:hover ~ label,
+.star-rating input:hover ~ input ~ label {
+    color: gold;
+}
