@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+{{-- {{dd($items)}} --}}
     <!-- CONTENT OF THE PAGE -->
     <main>
         <div class="content-container">
@@ -58,18 +59,19 @@
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
                     <span id="filter-icon"><i class="fa-solid fa-filter"></i></span>Sort by</button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="{{url("sort/high-to-low-review")}}">Review Count: High to Low</a></li>
+                    <li><a class="dropdown-item" href="{{url("sort/low-to-high-review")}}">Review Count: Low to High</a></li>
+                    <li><a class="dropdown-item" href="{{url("sort/high-to-low-rating")}}">Rating: High to Low</a></li>
+                    <li><a class="dropdown-item" href="{{url("sort/low-to-high-rating")}}">Rating: Low to High</a></li>
                 </ul>
             </div>
 
             <!-- CARD CONTAINER -->
             <div class="card-container">
                 @forelse ($items as $item)
-                    <a href="item_detail/{{ $item->Item_id }}">
+                    <a href="{{ url("item_detail/ $item->Item_id") }}">
                         <div class="card">
-                            <img src="images/{{$item->Image}}" class="card-img" alt="sunglasses image">
+                            <img src="{{asset('images/'.$item->Image)}}" class="card-img">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $item->Name }}</h5>
                                 <h6>{{ $item->Manufacturer}}</h6>
@@ -77,15 +79,15 @@
                             </div>
                             <div class="rating">
                                 <div class="stars">
-                                    <span>4.5</span>
+                                    <span>{{ $item->Rating }}</span>
+                                    <i class="fa-solid fa-star"></i>
+                                    {{-- <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i> --}}
                                 </div>
                                 <div class="review-total">
-                                    <p>(12)</p>
+                                    <p>({{$item->Total}})</p>
                                 </div>
                             </div>
                         </div>

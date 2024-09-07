@@ -14,23 +14,29 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-    return view('homePage');
-});
 
-
-Route::get('/test', function() {
-    $sql = "select * from Item";
+// --- HOME PAGE DISPLAYS LIST OF ALL ITEMS IN THE DB ---
+Route::get('/', function() {
+    $sql = "select Item.Item_id, Name, Manufacturer, Image, Description, ROUND(AVG(rating),1) AS 'Rating', COUNT(rating) AS 'Total' 
+            from Item, Review
+            where Item.Item_id = Review.Item_id
+            group by Item.Item_id";
     $items = DB::select($sql);
-    // dd($items);
+    
     return view('homePage')->with('items', $items);
 });
 
+
+// --- REVIEW PAGE DISPLAYS DETAILS OF ITEM SELECTED AND ITS REVIEWS ---
 Route::get('item_detail/{id}', function($id) {
     $item = get_item($id);
-    return view('reviewPage')->with('item', $item);
+    $reviews = DB::select("select * from Review where Item_id = ?", array($id));
+    $review_summary = DB::select("select COUNT(rating) AS 'Count', ROUND(AVG(rating),1) AS 'AvgRating' from Review where Item_id = ?", array($id));
+    return view('reviewPage')->with('item', $item)->with('reviews', $reviews)->with('reviewSummary', $review_summary[0]);
 });
 
+
+// --- function returns an item based on its id --- 
 function get_item($id) {
     $sql = "select * from item where Item_id = ? ";
     $items = DB::select($sql, array($id));
@@ -40,3 +46,20 @@ function get_item($id) {
     $item = $items[0];
     return $item;
 }
+
+// --- SORT ITEMS IN THE HOME PAGE ---
+Route::get('sort/{method}', function($method) {
+    if($method == 'high-to-low-review') { $sort = 'Total desc' ;};
+    if($method == 'low-to-high-review') { $sort = 'Total' ;};
+    if($method == 'high-to-low-rating') { $sort = 'Rating desc' ;};
+    if($method == 'low-to-high-rating') { $sort = 'Rating' ;};
+
+    $sql = "select Item.Item_id, Name, Manufacturer, Image, Description, ROUND(AVG(rating),1) AS 'Rating', COUNT(rating) AS 'Total' 
+            from Item, Review
+            where Item.Item_id = Review.Item_id
+            group by Item.Item_id
+            order by $sort";
+    $items = DB::select($sql);
+    
+    return view('homePage')->with('items', $items);
+});

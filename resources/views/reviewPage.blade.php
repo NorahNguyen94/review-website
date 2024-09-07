@@ -10,12 +10,12 @@
         <div class="review-container">
             <div class="product-info row">
                 <div class="img-container col-5">
-                    <img src="images/sunglasses.jpg" alt="">
+                    <img src="{{asset('images/'.$item->Image)}}" alt="">
                 </div>
                 <div class="info-details col-7">
                     <div class="rate">
                         <div class="stars">
-                            <span>4.5</span>
+                            <span>{{$reviewSummary->AvgRating}}</span>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -23,7 +23,7 @@
                             <i class="fa-solid fa-star"></i>
                         </div>
                         <div class="review-number">
-                            <p><span>12</span> Reviews</p>
+                            <p><span>{{$reviewSummary->Count}}</span> Reviews</p>
                         </div>
                     </div>
                     <h4>{{ $item->Name }}</h4>
@@ -82,52 +82,34 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="all-reviews">
-                    <div class="review-item row">
-                        <div class="avatar col-2">
-                            <img src="images/avatar.png" alt="">
-                        </div>
-                        <div class="col-9">
-                            <div>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>03/03/2023</span>
-                            </div>
-                            <h6>Name of user reviewing</h6>
-                            <p>Content of their review</p>
-                        </div>
-                        <div class="col-1">
-                            <button type="button" class="my-button" data-bs-toggle="modal"
-                                data-bs-target="#addReviewModal"><i class="fa-regular fa-pen-to-square"></i></button>
-                        </div>
-                    </div>
-                    <div class="review-item row">
-                        <div class="avatar col-2">
-                            <img src="images/avatar.png" alt="">
-                        </div>
-                        <div class="col-9">
-                            <div>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>03/03/2023</span>
-                            </div>
-                            <h6>Name of user reviewing</h6>
-                            <p>Content of their review</p>
-                        </div>
-                        <div class="col-1">
-                            <button type="button" class="my-button" data-bs-toggle="modal"
-                                data-bs-target="#addReviewModal"><i class="fa-regular fa-pen-to-square"></i></button>
-                        </div>
-                    </div>
 
+                {{-- REVIEW SECTION --}}
+                <div class="all-reviews">
+                    @forelse ($reviews as $review)
+                    <div class="review-item row">
+                        <div class="avatar col-2">
+                            <img src="{{asset('images/avatar.png')}}" alt="">
+                        </div>
+                        <div class="col-9">
+                            <div>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>{{ $review->date }}</span>
+                            </div>
+                            <h6>{{ $review->Username }}</h6>
+                            <p>{{ $review->reviewText }}</p>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" class="my-button" data-bs-toggle="modal"
+                                data-bs-target="#addReviewModal"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </div>
+                    </div>
+                    @empty
+                    @endforelse
                 </div>
             </div>
         </div>
