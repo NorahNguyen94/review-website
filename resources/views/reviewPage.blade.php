@@ -7,7 +7,7 @@
 @section('content')
     <!-- CONTENT OF THE PAGE -->
     <main>
-        {{-- Notofication modal --}}
+        {{-- Notification modal --}}
         <div class="modal fade" id="notificationModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -17,9 +17,9 @@
                     </div>
                     <div class="modal-body">
                         <p>{{ session('message') }}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,10 @@
                                         <div class="form-group">
                                             <label for="reviewTitle">Username</label>
                                             <input type="text" class="form-control" id="reviewTitle"
-                                                placeholder="Enter your username" name="username">
+                                                placeholder="Enter your username" name="username" value="{{session('username') ?? '' }}">
+                                            @if (session('username_error'))
+                                                <p class="alert">{{ session('username_error') }}</p>
+                                            @endif
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-4" for="star-rating-group">Rating</label>
@@ -122,6 +125,9 @@
                                             <label for="editReviewUsername">Username</label>
                                             <input type="text" class="form-control" id="editReviewUsername"
                                                 placeholder="Enter your username" name="username">
+                                            @if (session('edit_username_error'))
+                                                <p class="alert">{{ session('edit_username_error') }}</p>
+                                            @endif
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-4" for="star-rating-group">Rating</label>
@@ -164,11 +170,9 @@
                             </div>
                             <div class="col-9">
                                 <div>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <i class="fa-solid fa-star {{ $i <= $review->Rating ? 'checked' : 'unchecked' }}"></i>
+                                    @endfor
                                     <span>{{ $review->date }}</span>
                                 </div>
                                 <h6>{{ $review->Username }}</h6>
@@ -208,12 +212,32 @@
     </script>
 @endsection
 
-@section('script')
-    <script>
-        // Show notification when a review added or updated
-        @if (session('message'))
-        var notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
-        notificationModal.show();
-        @endif
-    </script>
-@endsection
+{{-- Show notification when a review added or updated --}}
+@if (session('message'))
+    @section('script')
+        <script>
+            var notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+            notificationModal.show();
+        </script>
+    @endsection
+@endif
+
+{{-- Show the modal to display username error when adding review --}}
+@if (session('username_error'))
+    @section('script')
+        <script>
+            var modal = new bootstrap.Modal(document.getElementById('addReviewModal'));
+            modal.show();
+        </script>
+    @endsection
+@endif
+
+{{-- Show the modal to display username error when editting review --}}
+@if (session('edit_username_error'))
+    @section('script')
+        <script>
+            var modal = new bootstrap.Modal(document.getElementById('editReviewModal'));
+            modal.show();
+        </script>
+    @endsection
+@endif

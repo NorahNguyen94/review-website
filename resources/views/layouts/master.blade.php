@@ -15,9 +15,9 @@
     <!-- NAVIGATION BAR  -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand h1" href="#">
-                <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" width="30" height="24"
-                    class="d-inline-block align-text-top">Navbar
+            <a class="navbar-brand h1" href="/">
+                <img src="{{asset("images/n-logo.jpg")}}" width="50" height="40"
+                    class="d-inline-block align-text-top">NReview
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -36,7 +36,10 @@
                         <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manufacturers</a>
+                        <a class="nav-link" href="/manufacturer">Manufacturers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
