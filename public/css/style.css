@@ -3,11 +3,7 @@
     --background-color: #f0f0f0;
 }
 
-* {
-    /* margin: 0;
-    padding: 0; */
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 /* --------- NAV BAR ---------- */
 #search-form {
@@ -205,12 +201,12 @@ main {
 
 .form-group:nth-child(2) { align-items: center;}
 
-/* FROM HERE */
+/* ------- rating stars in the form -------- */
 .star-rating {
     display: flex;
-    direction: row-reverse;
     font-size: 2rem;
     justify-content: left;
+    flex-direction: row-reverse;
 }
 
 .star-rating input {
@@ -227,7 +223,9 @@ main {
     color: gold;
 }
 
-.star-rating input:hover ~ label,
-.star-rating input:hover ~ input ~ label {
+.star-rating label:hover,
+.star-rating label:hover ~ label {
     color: gold;
 }
+
+.modal-footer { margin-top: 20px; }
