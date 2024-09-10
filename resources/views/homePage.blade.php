@@ -106,7 +106,7 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{url($item->Item_id)}}"><i class="fa-solid fa-trash"></i>Delete item</a></li>
+                                <li><a class="dropdown-item" href="{{url($item->Item_id)}}/delete"><i class="fa-solid fa-trash"></i>Delete item</a></li>
                             </ul>
                         </div>
                         <a href="{{ url("item_detail/ $item->Item_id") }}">
@@ -128,6 +128,7 @@
                         </a>
                     </div>
                 @empty
+                <p> There are no items.</p>
                 @endforelse
             </div>
         </div>

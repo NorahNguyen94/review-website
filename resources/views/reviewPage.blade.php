@@ -185,6 +185,7 @@
                             </div>
                         </div>
                     @empty
+                    <p>There are no reviews for this item yet.</p>
                     @endforelse
                 </div>
             </div>
